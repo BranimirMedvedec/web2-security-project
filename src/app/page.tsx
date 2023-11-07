@@ -1,5 +1,6 @@
 "use client"
 import SQLComponent from "@/components/SQLInjectionComponent"
+import SafeQuery from "@/lib/safeQuery"
 import Link from "next/link"
 
 export default function Home() {

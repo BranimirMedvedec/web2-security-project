@@ -1,18 +1,18 @@
 "use server"
+import { UserPets } from "@/types/UserPets"
 import { postgresPool } from "./db"
 
-export default async function SafeQuery(name: string) {
-	const query = {
-		text: `SELECT * FROM users LEFT JOIN pets ON users.user_id = pets.user_id WHERE pets.name = $1;`,
-		values: [name],
-	}
+export default async function UnsafeQuery(name: string) {
+	const query = `SELECT * FROM users LEFT JOIN pets ON users.user_id = pets.user_id WHERE pets.name = ${name};`
+
+	console.log("query", query)
 
 	try {
 		const result = await postgresPool.query(query)
 
-		if (result.rows.length === 0) return null
+		if (!result) return null
 
-		const data = result.rows.map((row) => {
+		const data: UserPets[] = result.rows.map((row) => {
 			return {
 				user_id: row.user_id,
 				username: row.username,

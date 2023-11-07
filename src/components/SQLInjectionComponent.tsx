@@ -1,39 +1,41 @@
 "use client"
-import { FormEvent, useState } from "react"
+import { useState } from "react"
 import { UserPets } from "@/types/UserPets"
 import SafeQuery from "@/lib/safeQuery"
+import UnsafeQuery from "@/lib/unsafeQuery"
+import error from "next/error"
 
 export default function SQLComponent() {
-	const [data, setData] = useState<UserPets[]>([])
+	const [data, setData] = useState<UserPets[] | null>(null)
 	const [status, setStatus] = useState("")
 	const [safe, setSafe] = useState(true)
 	const [name, setName] = useState("")
 
-	// const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-	// 	e.preventDefault()
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
 
-	// 	const url = safe
-	// 		? `/api/dbquery/safe?username=${username}`
-	// 		: `/api/dbquery/unsafe?username=${username}`
-
-	// 	console.log("url", url)
-
-	// 	try {
-	// 		const res = await fetch(url, {
-	// 			method: "GET",
-	// 			headers: {
-	// 				"Content-Type": "application/json",
-	// 			},
-	// 		})
-	// 		const data = await res.json()
-	// 		console.log("data", data)
-	// 		console.log("res", res)
-	// 		setData(data)
-	// 		setStatus(res.status.toString())
-	// 	} catch (error) {
-	// 		console.log(error)
-	// 	}
-	// }
+		if (safe) {
+			const tempString = await SafeQuery(name)
+			if (!tempString) return setStatus("Error")
+			const temp = JSON.parse(tempString)
+			if (temp) {
+				setData(temp as UserPets[])
+				setStatus("Success")
+			} else {
+				setStatus("Error")
+			}
+		} else {
+			const tempString = await UnsafeQuery(name)
+			if (!tempString) return setStatus("Error")
+			const temp = JSON.parse(tempString)
+			if (temp) {
+				setData(temp as UserPets[])
+				setStatus("Success")
+			} else {
+				setStatus("Error")
+			}
+		}
+	}
 
 	return (
 		<div>
@@ -53,7 +55,7 @@ export default function SQLComponent() {
 				/>
 				<label>{safe ? "Safe" : "Unsafe"}</label>
 			</div>
-			<form action={SafeQuery}>
+			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
 					name="name"
@@ -61,7 +63,11 @@ export default function SQLComponent() {
 					value={name}
 					onChange={(e) => setName(e.currentTarget.value)}
 				/>
-				<button className="btn btn-primary">Fetch data</button>
+				<button
+					type="submit"
+					className="btn btn-primary">
+					Fetch data
+				</button>
 			</form>
 			<ul>
 				<li>
