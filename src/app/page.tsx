@@ -1,6 +1,6 @@
 "use client"
 import SQLComponent from "@/components/SQLInjectionComponent"
-import SafeQuery from "@/lib/safeQuery"
+import SignupForm from "@/components/SignupForm"
 import Link from "next/link"
 
 export default function Home() {
@@ -11,7 +11,9 @@ export default function Home() {
 				{/* <Link href="/sqlinjection">SQL Injection</Link> */}
 			</div>
 
-			<SQLComponent />
+			{/* <SQLComponent /> */}
+
+			<SignupForm />
 		</div>
 	)
 }
