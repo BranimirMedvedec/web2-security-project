@@ -1,8 +1,8 @@
-export const sessionCheck = async () => {
-	const session = localStorage.getItem("session")
+export const sessionCheck = () => {
+	const session = sessionStorage.getItem("session")
 	if (session) {
 		return JSON.parse(session)
 	} else {
-		return false
+		return null
 	}
 }

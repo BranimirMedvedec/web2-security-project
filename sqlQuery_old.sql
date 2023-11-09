@@ -4,8 +4,8 @@ DROP TABLE IF EXISTS Pets;
 -- Create Users and Pets tables
 CREATE TABLE Users (
     user_id SERIAL PRIMARY KEY,
-    email VARCHAR(255),
-    password VARCHAR(255)
+    username VARCHAR(255),
+    address VARCHAR(255)
 );
 
 CREATE TABLE Pets (
@@ -20,12 +20,12 @@ CREATE TABLE Pets (
 );
 
 -- Insert data into Users table
-INSERT INTO Users (email, password) VALUES
-    ('john.smith@example.com', 'password123'),
-    ('sarah.johnson@example.com', 'password456'),
-    ('robert.lee@example.com', 'password789'),
-    ('sophia.anderson@example.com', 'password101'),
-    ('emma.martinez@example.com', 'password202');
+INSERT INTO Users (user_id, username, address) VALUES
+    ('John Smith', '123 Main Street, Anytown, USA'),
+    ('Sarah Johnson', '789 Oak Road, Another City, USA'),
+    ('Robert Lee', '333 Redwood Drive, Hometown, USA'),
+    ('Sophia Anderson', '444 Maple Street, Somecity, USA'),
+    ('Emma Martinez', '555 Birch Road, Everytown, USA');
 
 -- Insert data into Pets table
 INSERT INTO Pets (pet_id, name, species, breed, age, weight, user_id) VALUES

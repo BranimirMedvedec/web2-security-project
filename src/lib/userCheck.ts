@@ -1,30 +1,18 @@
+"use server"
 import { postgresPool } from "./db"
 
-export default async function UserCheck(username: string) {
+export default async function UserCheck(email: string) {
 	const query = {
-		text: `SELECT * FROM users LEFT JOIN pets ON users.user_id = pets.user_id WHERE users.username = $1;`,
-		values: [username],
+		text: `SELECT * FROM users WHERE users.email = $1;`,
+		values: [email],
 	}
 
 	try {
-		const result = await postgresPool.query(query)
-
-		if (result.rows.length === 0) return null
-
-		const data = result.rows.map((row) => {
-			return {
-				user_id: row.user_id,
-				username: row.username,
-				address: row.address,
-				pet_id: row.pet_id,
-				name: row.name,
-				species: row.species,
-				breed: row.breed,
-				age: row.age,
-				weight: row.weight,
-			}
-		})
-		return JSON.stringify(data)
+		const client = await postgresPool.connect()
+		const result = await client.query(query)
+		client.release()
+		if (result.rows.length === 1) return true
+		else return false
 	} catch (error) {
 		return null
 	}

@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS Users;
-DROP TABLE IF EXISTS Pets;
+export const sqlQuery = `DROP TABLE IF EXISTS Users CASCADE;
+DROP TABLE IF EXISTS Pets CASCADE;
 
 -- Create Users and Pets tables
 CREATE TABLE Users (
@@ -28,7 +28,7 @@ INSERT INTO Users (email, password) VALUES
     ('emma.martinez@example.com', 'password202');
 
 -- Insert data into Pets table
-INSERT INTO Pets (pet_id, name, species, breed, age, weight, user_id) VALUES
+INSERT INTO Pets (name, species, breed, age, weight, user_id) VALUES
     ('Max', 'Dog', 'Labrador', 4, 65, 1),
     ('Bella', 'Cat', 'Siamese', 2, 9, 2),
     ('Rocky', 'Dog', 'German Shepherd', 3, 80, 1),
@@ -44,3 +44,4 @@ INSERT INTO Pets (pet_id, name, species, breed, age, weight, user_id) VALUES
     ('Buddy', 'Dog', 'Border Collie', 5, 45, 5),
     ('Lily', 'Cat', 'Maine Coon', 2, 14, 1),
     ('Teddy', 'Dog', 'Pug', 1, 15, 2);
+`

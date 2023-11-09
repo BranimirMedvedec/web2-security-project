@@ -1,4 +1,4 @@
-export type User = {
+export type Session = {
 	email: string
 	password: string
 }

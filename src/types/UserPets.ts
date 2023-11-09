@@ -1,8 +1,7 @@
-// combine users and pets tables
 export type UserPets = {
 	user_id: number
-	username: string
-	address: string
+	email: string
+	password: string
 	pet_id: number
 	name: string
 	species: string
