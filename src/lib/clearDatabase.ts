@@ -5,12 +5,10 @@ export default async function ClearDatabase() {
 	const query = `DROP TABLE IF EXISTS "users" CASCADE;
     DROP TABLE IF EXISTS "pets" CASCADE;`
 	try {
-		const client = await postgresPool.connect()
-
-		await client.query(query)
-		postgresPool.end()
+		await postgresPool.query(query)
+		// console.log("Database cleared")
 	} catch (error) {
-		postgresPool.end()
+		// console.log("Database not cleared")
 		return null
 	}
 }

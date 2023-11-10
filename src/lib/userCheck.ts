@@ -8,9 +8,7 @@ export default async function UserCheck(email: string) {
 	}
 
 	try {
-		const client = await postgresPool.connect()
-		const result = await client.query(query)
-		client.release()
+		const result = await postgresPool.query(query)
 		if (result.rows.length === 1) return true
 		else return false
 	} catch (error) {

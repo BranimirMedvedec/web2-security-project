@@ -25,9 +25,9 @@ export default function SafeForm() {
 	}
 
 	return (
-		<div className="mx-auto flex w-full max-w-sm flex-col gap-6">
+		<div className="mx-auto flex w-full max-w-sm flex-col gap-6 min-h-screen justify-center">
 			<div className="flex flex-col items-center">
-				<h1 className="text-3xl font-semibold">Sign In</h1>
+				<h1 className="text-3xl font-semibold mb-2">Sign In</h1>
 				<p className="text-sm">Web2 Security Project</p>
 			</div>
 			<form onSubmit={handleSubmit}>

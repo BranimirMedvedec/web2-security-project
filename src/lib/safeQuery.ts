@@ -1,10 +1,14 @@
 "use server"
 import { postgresPool } from "./db"
 
-export default async function SafeQuery(name: string) {
+export default async function SafeQuery(
+	selectedOption: string,
+	sqlInput: string
+) {
+	const table = "pets." + selectedOption
 	const query = {
-		text: `SELECT * FROM users LEFT JOIN pets ON users.user_id = pets.user_id WHERE pets.name = $1;`,
-		values: [name],
+		text: `SELECT * FROM pets WHERE ${table} = $1;`,
+		values: [sqlInput],
 	}
 
 	try {
@@ -14,10 +18,6 @@ export default async function SafeQuery(name: string) {
 
 		const data = result.rows.map((row) => {
 			return {
-				user_id: row.user_id,
-				username: row.username,
-				address: row.address,
-				pet_id: row.pet_id,
 				name: row.name,
 				species: row.species,
 				breed: row.breed,

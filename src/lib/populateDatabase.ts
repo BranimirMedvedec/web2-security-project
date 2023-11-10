@@ -4,11 +4,10 @@ import { sqlQuery } from "./sqlQuery"
 
 export default async function PopulateDatabase() {
 	try {
-		const client = await postgresPool.connect()
-		await client.query(sqlQuery)
-		postgresPool.end()
+		await postgresPool.query(sqlQuery)
+		// console.log("Database populated")
 	} catch (error) {
-		postgresPool.end()
+		// console.log("Database not populated")
 		return null
 	}
 }
