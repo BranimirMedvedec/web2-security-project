@@ -161,13 +161,22 @@ export default function Home() {
 							</button>
 						</div>
 						<div className="flex items-center w-full justify-evenly">
-							<button
-								className="btn btn-outline-secondary"
-								onClick={() => {
-									setSqlInput(sqlInjectionQuery)
-								}}>
-								Test SQL Injection
-							</button>
+							<div className="flex flex-col justify-center items-center gap-4">
+                                <button
+                                    className="btn btn-outline-secondary"
+                                    onClick={() => {
+                                        setSqlInput(sqlInjectionQuery)
+                                    }}>
+                                    Test SQL Injection
+                                </button>
+                                <button
+                                    className="btn btn-outline-warning"
+                                    onClick={() => {
+                                        setData(undefined)
+                                    }}>
+                                    Clear TextArea
+                                </button>
+                            </div>
 							<textarea
 								className="textarea w-full resize"
 								placeholder="SQL Result"

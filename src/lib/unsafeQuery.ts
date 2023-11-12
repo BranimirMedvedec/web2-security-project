@@ -13,7 +13,18 @@ export default async function UnsafeQuery(
 
 		if (!result) return null
 
-		return JSON.stringify(result.rows)
+		const data = result.rows.map((row) => {
+			return {
+				name: row.name,
+				species: row.species,
+				breed: row.breed,
+				age: row.age,
+				weight: row.weight,
+			}
+		})
+
+		// return JSON.stringify(result.rows)
+        return JSON.stringify(data)
 	} catch (error) {
 		return null
 	}
