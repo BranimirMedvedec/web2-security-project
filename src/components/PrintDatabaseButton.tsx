@@ -12,7 +12,7 @@ export default function PrintDatabaseButton() {
 			const db = await PrintDatabase()
 			setDatabase(db)
 		} catch (err) {
-			// console.error(err)
+			return null
 		}
 	}
 

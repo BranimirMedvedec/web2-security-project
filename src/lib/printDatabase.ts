@@ -47,10 +47,8 @@ export default async function PrintDatabase() {
 			pets: pets,
 			userPets: userPets,
 		}
-        // console.log("Database fetched")
 		return database
 	} catch (error) {
-		// console.log("Database is empty")
 		return null
 	}
 }

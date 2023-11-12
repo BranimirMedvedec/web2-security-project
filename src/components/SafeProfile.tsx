@@ -1,5 +1,5 @@
 "use client"
-import { useUser, UserProfile } from "@auth0/nextjs-auth0/client"
+import { UserProfile } from "@auth0/nextjs-auth0/client"
 import Link from "next/link"
 import LoadingPage from "./Loading"
 import ErrorPage from "./Error"

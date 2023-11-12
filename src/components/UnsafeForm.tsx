@@ -63,9 +63,6 @@ export default function SafeForm() {
 							</button>
 						</div>
 					</div>
-					<div>
-						{/* TODO add buttons drop table, populate table */}
-					</div>
 				</div>
 			</form>
 		</div>
