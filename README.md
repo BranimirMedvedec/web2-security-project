@@ -49,9 +49,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-### About web app
+## About web app
 
-## Authentication
+### Authentication
 
 Auth0 is implemented for safe authentication.
 
@@ -64,7 +64,7 @@ Logout doesn't remove the session (there is a clear session button just for that
 
 If user types in email that is already used by other user, it returns bad error "User with that email already exists".
 
-## SQL Injection
+### SQL Injection
 
 Testing SQL: it queries the database table "Pets" by a few attributes and value of selected attribute, returns pets that match the value and attribute if query successful.
 
@@ -72,7 +72,7 @@ Safe SQL testing prevents tautology by sanitizing the query (converting it to st
 
 Unsafe query doesn't sanitize the input and is liable to SQL Injection Attack. Button "Test SQL Injection" sets the input to a malicious query that will return the data of table "Users" from database.
 
-## Database options
+### Database options
 
 Page with a few options for database (Drop Tables, Populate Database, Print Database).
 
