@@ -6,13 +6,10 @@ export default async function UnsafeQuery(
 	sqlInput: string
 ) {
 	const table = "pets." + selectedOption
-	console.log("table", table)
 	const query = `SELECT * FROM pets WHERE ${table} = '${sqlInput}';`
-	console.log("query", query)
 
 	try {
 		const result = await postgresPool.query(query)
-		console.log("result", result)
 
 		if (!result) return null
 
